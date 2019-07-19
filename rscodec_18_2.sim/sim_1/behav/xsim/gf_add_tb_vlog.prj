@@ -1,0 +1,16 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../reed_solomon_codec.ip_user_files/bd/design_1/sim/design_1.v" \
+
+sv xil_defaultlib  \
+"../../../../reed_solomon_codec.srcs/sources_1/new/gf_add.sv" \
+"../../../../reed_solomon_codec.srcs/sources_1/new/log2.sv" \
+
+verilog xil_defaultlib  \
+"../../../../reed_solomon_codec.srcs/sim_1/new/gf_add_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
