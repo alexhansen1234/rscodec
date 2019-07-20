@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.2.2 (64-bit)
+# SW Build 2348494 on Mon Oct  1 18:25:39 MDT 2018
+# IP Build 2318053 on Mon Oct  1 21:44:26 MDT 2018
+# Start of session at: Sat Jul 20 14:18:39 2019
+# Process ID: 30079
+# Current directory: /home/alex/dev/fpga/rscodec/rscodec_18_2.runs/synth_1
+# Command line: vivado -log gf_poly_mul_tb.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source gf_poly_mul_tb.tcl
+# Log file: /home/alex/dev/fpga/rscodec/rscodec_18_2.runs/synth_1/gf_poly_mul_tb.vds
+# Journal file: /home/alex/dev/fpga/rscodec/rscodec_18_2.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source gf_poly_mul_tb.tcl -notrace
