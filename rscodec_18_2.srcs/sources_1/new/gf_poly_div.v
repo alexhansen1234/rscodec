@@ -80,7 +80,7 @@ module gf_poly_div
     reg [31:0] divisor_order;
     wire [width:0] mult_pad[0 : $size(dividend_buffer)-$size(divisor_buffer)-1];
     
-    assign mult_pad = {'0};
+    assign mult_pad = '{$size(mult_pad){'0}};
     
     genvar j;
     for(j=0; j < $size(divisor_buffer); j=j+1) begin
@@ -190,14 +190,10 @@ module gf_poly_div_tb;
     parameter g = 19;
     parameter width = Math::log2(n);
 
-    reg [width:0] in0[3:0] = { 4'd1, 4'd2, 4'd3, 4'd4 };
+    reg [width:0] in0[6:0] = { 4'd1, 4'd1, 4'd1, 4'd1, 4'd2, 4'd3, 4'd4 };
     reg [width:0] in1[2:0] = { 4'd2, 4'd3, 4'd4 };
     wire [width:0] out[0 : $size(in0) - $size(in1)];
     wire [width:0] rem[0 : $size(in1) - 2];
-
-    wire [width:0] in0_wire[3:0];
-    wire [width:0] in1_wire[2:0];
-    wire [width:0] out_wire[0 : $size(out)-1];
 
     reg clock;
     reg start;
@@ -221,10 +217,7 @@ module gf_poly_div_tb;
         .dividend(in0),
         .divisor(in1),
         .quotient(out),
-        .remainder(rem),
-        .dividend_buffer_out(in0_wire),
-        .divisor_buffer_out(in1_wire),
-        .quotient_buffer_out(out_wire)
+        .remainder(rem)
     );
 
     initial begin
