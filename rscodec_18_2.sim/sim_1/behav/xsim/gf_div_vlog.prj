@@ -10,6 +10,8 @@ sv xil_defaultlib  \
 "../../../../rscodec_18_2.srcs/sources_1/new/gf_add.sv" \
 "../../../../rscodec_18_2.srcs/sources_1/new/gf_poly_mul.sv" \
 "../../../../rscodec_18_2.srcs/sources_1/new/gf_log.sv" \
+"../../../../rscodec_18_2.srcs/sources_1/new/gf_poly_div.v" \
+"../../../../rscodec_18_2.srcs/sources_1/new/gf_div.sv" \
 
 verilog xil_defaultlib  \
 "../../../../rscodec_18_2.srcs/sim_1/new/gf_add_tb.v" \

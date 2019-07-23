@@ -1,0 +1,79 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 07/20/2019 07:53:05 PM
+// Design Name: 
+// Module Name: gf_mul
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+`include "log2.sv"
+
+
+module gf_mul
+(
+    in0,
+    in1,
+    out
+);
+    parameter n=15;
+    parameter g=19;
+    parameter bounds = Math::log2(n);
+    
+    input [bounds:0] in0;
+    input [bounds:0] in1;
+    output [bounds:0] out;
+    
+    wire [bounds:0] log_out_0;
+    wire [bounds:0] log_out_1;
+    wire [bounds:0] exp_in_0;
+    wire [bounds:0] exp_out_0;
+    
+    assign exp_in_0 = (log_out_0 + log_out_1) % n;
+    
+    gf_log #(.n(n), .g(g)) log_table0(in0, log_out_0);
+    gf_log #(.n(n), .g(g)) log_table1(in1, log_out_1);
+    gf_exp #(.n(n), .g(g)) exp_table0( exp_in_0, exp_out_0);
+   
+    assign out = ( (in0 == 0) || (in1 == 0) ) ? 0 : exp_out_0;    
+    
+   
+endmodule: gf_mul
+
+module gf_mul_tb;
+    parameter n = 15;
+    parameter g = 11;
+    parameter width = Math::log2(n);
+    
+    reg [width:0] in0;
+    reg [width:0] in1;
+    wire [width:0] out;
+
+    gf_mul #(.n(n), .g(g)) muler(in0,in1,out);
+
+    initial begin
+        for(integer i=0; i < n+1; i=i+1) begin
+            in0 = i;
+            for(integer j=0; j < n+1; j=j+1) begin
+                in1 = j;
+                #1;
+                $write("%d ", out);
+            end
+            $write("\n");
+        end
+    $finish;
+    end
+
+endmodule: gf_mul_tb

@@ -2,11 +2,11 @@
 # Webtalk v2018.2.2 (64-bit)
 # SW Build 2348494 on Mon Oct  1 18:25:39 MDT 2018
 # IP Build 2318053 on Mon Oct  1 21:44:26 MDT 2018
-# Start of session at: Sat Jul 20 13:55:27 2019
-# Process ID: 28115
+# Start of session at: Mon Jul 22 19:29:48 2019
+# Process ID: 8480
 # Current directory: /home/alex/dev/fpga/rscodec/rscodec_18_2.sim/sim_1/behav/xsim
-# Command line: wbtcv -mode batch -source /home/alex/dev/fpga/rscodec/rscodec_18_2.sim/sim_1/behav/xsim/xsim.dir/gf_poly_add_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Command line: wbtcv -mode batch -source /home/alex/dev/fpga/rscodec/rscodec_18_2.sim/sim_1/behav/xsim/xsim.dir/gf_poly_mul_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: /home/alex/dev/fpga/rscodec/rscodec_18_2.sim/sim_1/behav/xsim/webtalk.log
 # Journal file: /home/alex/dev/fpga/rscodec/rscodec_18_2.sim/sim_1/behav/xsim/webtalk.jou
 #-----------------------------------------------------------
-source /home/alex/dev/fpga/rscodec/rscodec_18_2.sim/sim_1/behav/xsim/xsim.dir/gf_poly_add_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+source /home/alex/dev/fpga/rscodec/rscodec_18_2.sim/sim_1/behav/xsim/xsim.dir/gf_poly_mul_tb_behav/webtalk/xsim_webtalk.tcl -notrace
