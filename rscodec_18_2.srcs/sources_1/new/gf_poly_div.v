@@ -149,23 +149,41 @@ module gf_poly_div
                         else
                             state <= 1;
                     end
-                    
+                
                 2:  begin
-                        quotient_buffer[0] <= quotient_out;
-                        state <= 3;
+                        if( dividend_order < divisor_order ) begin
+                            state <= 0;
+                            done_reg <= 1;
+                        end
+                        
+                        else
+                            state <= 3;
                     end
-                    
+                                    
                 3:  begin
-                        dividend_buffer <= add_out;
-                        dividend_order <= dividend_order - 1;
-                            state <= 4;
+                        quotient_buffer[0] <= quotient_out;
+                        state <= 4;
                     end
                     
                 4:  begin
-                        if( dividend_order < divisor_order ) begin
+                        dividend_buffer <= add_out;
+                        state <= 5;
+                    end
+                    
+                5:  begin
+                        if( dividend_buffer[0] == 0 ) begin                           
                             for(i=1; i < $size(dividend_buffer); i=i+1)
                                 dividend_buffer[i-1] <= dividend_buffer[i];
                             dividend_buffer[$size(dividend_buffer)-1] <= 0;
+                            dividend_order <= dividend_order - 1;
+                        end
+                        else begin
+                            state <= 6;
+                        end
+                    end
+                    
+                6:  begin
+                        if( dividend_order < divisor_order ) begin
                             state <= 0;
                             done_reg <= 1;
                         end
@@ -174,9 +192,8 @@ module gf_poly_div
                             for(i=1; i < $size(quotient_buffer); i=i+1)
                                 quotient_buffer[i] <= quotient_buffer[i-1];
                             quotient_buffer[0] <= 0;
-                            state <= 1;
-                        end
-                                 
+                            state <= 2;
+                        end         
                     end
 
             endcase
@@ -190,8 +207,8 @@ module gf_poly_div_tb;
     parameter g = 19;
     parameter width = Math::log2(n);
 
-    reg [width:0] in0[6:0] = { 4'd1, 4'd1, 4'd1, 4'd1, 4'd2, 4'd3, 4'd4 };
-    reg [width:0] in1[2:0] = { 4'd2, 4'd3, 4'd4 };
+    reg [width:0] in0[14:0] = { 4'd1, 4'd2, 4'd3, 4'd4, 4'd5, 4'd6, 4'd7, 4'd8, 4'd9, 4'd10, 4'd11, 4'd0, 4'd0, 4'd0, 4'd0 };
+    reg [width:0] in1[4:0] = { 4'd1, 4'd15, 4'd3, 4'd1, 4'd12 };
     wire [width:0] out[0 : $size(in0) - $size(in1)];
     wire [width:0] rem[0 : $size(in1) - 2];
 
